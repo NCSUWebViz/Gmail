@@ -1,0 +1,14 @@
+==========================================
+NCSUWebViz - CSC591 Web Visualization 2.0 |
+==========================================
+
+This is a part of course project which tries to analyze your inbox. With help of Java mail API we authenticate user's email-id and password with Gmail Server. Once completed we run our importance algorithm to determine important users, mails frequency of mails from users and time to respond to these mails from the moment they arrived.
+
+=========================
+|	Team:		|			
+|	Vartika Singh	|
+|	Nidhi Pathak	|
+|	Sarvesh Pai	|
+| 	Girish Pandit	|
+=========================
+
