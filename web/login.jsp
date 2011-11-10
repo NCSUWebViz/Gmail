@@ -13,9 +13,11 @@
 
 <body>
 <div id="header"><img src="./resources/images/gmail.PNG" style="height: 71px; width: 409px; "/></div>
-Click the login link to launch the modal box:<br />
+Analyse your Inbox:<br />
 
-<span style="font-size: 15px;"><a id="login_link" href="#">LOGIN</a> | MEMBERS AREA</a></span>
+<span style="font-size: 15px;">
+<a id="login_link" href="#">LOGIN</a>
+</span>
 
 
 <div id="login_form" style='display:none'>
@@ -34,7 +36,7 @@ Click the login link to launch the modal box:<br />
 <label>&nbsp;</label><input value="Login" name="Login" id="submit" class="big" type="submit" />
 
 <div id="ajax_loading">
-<img align="absmiddle" src="./resources/images/spinner.gif">&nbsp;Processing...
+<img align="absmiddle" src="./resources/images/spinner.gif">&nbsp;Please wait Analyzing your Inbox...
 </div>
 
 </form>

@@ -56,7 +56,8 @@ function drawPieChart1(msg) {
 		'title' : 'Individual Users importance',
 		'is3D' : 'true',
 		'width' : '100%',
-		'height' : '100%'
+		'height' : '100%',
+		'vAxis.logScale' : true
 	};
 
 	// Instantiate and draw our chart, passing in some options.
@@ -109,7 +110,8 @@ function drawPieChart2(msg) {
 		'title' : 'Grouped Users Importance',
 		'is3D' : 'true',
 		'width' : '100%',
-		'height' : '100%'
+		'height' : '100%',
+		'vAxis.logScale' : true
 	};
 
 	// Instantiate and draw our chart, passing in some options.
@@ -159,7 +161,8 @@ function drawChart1(msg, type) {
 		'title' : 'Users Importance',
 		is3D : true,
 		'width' : '100%',
-		'height' : '100%'
+		'height' : '100%',
+		'vAxis.logScale' : true
 	};
 
 	// Instantiate and draw our chart, passing in some options.
@@ -211,7 +214,8 @@ function drawChart2(msg, type) {
 		'title' : 'Grouped Users Importance',
 		is3D : true,
 		'width' : '100%',
-		'height' : '100%'
+		'height' : '100%',
+		'vAxis.logScale' : true
 	};
 	if (type == 'ColumnChart') {
 		// console.log(type)

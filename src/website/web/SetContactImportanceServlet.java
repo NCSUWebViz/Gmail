@@ -55,7 +55,7 @@ public class SetContactImportanceServlet extends HttpServlet {
 		while (i.hasNext()) {
 			Map.Entry<String, String> me = (Map.Entry<String, String>) i.next();
 			contactResultSet = statement.executeQuery("UPDATE CONTACT SET CONTACTIMP="
-							+ me.getValue() + " WHERE CONTACTEMAIL='"
+							+ (me.getValue()) + " WHERE CONTACTEMAIL='"
 							+ me.getKey() + "'");
 		}
 		statement.executeUpdate("COMMIT");

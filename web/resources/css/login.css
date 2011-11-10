@@ -3,6 +3,8 @@ html,body {
 	border: 0px none;
 	font-family: Verdana;
 	font-size: 11px;
+	background: #467612 url("../images/gmail_background.jpg") repeat-x;  
+    background-size: 100%;	
 }
 
 /* Label */
@@ -45,7 +47,11 @@ div {
 	font-family: Verdana;
 	font-size: 11px;
 }
-
+#login_link{
+	color: white;
+	align: center;
+	left: 250px;
+}
 /* 'Login' Button */
 #submit {
 	margin: 5px;

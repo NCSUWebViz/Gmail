@@ -28,7 +28,7 @@ $(document).ready(function() {
 													url : "/GmailViz/home", 
 													data : {loginUsername:loginUsername, loginPassword:loginPassword},
 													success : function(msg) {
-														window.location = "http://localhost:8080/GmailViz/imp_contact.jsp"
+														window.location = "http://localhost:8080/GmailViz/user_importance.jsp"
 													}
 												});
 									}); // end submit event
