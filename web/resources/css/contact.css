@@ -1,0 +1,95 @@
+body {
+	padding: 0;
+	border: 0px none;
+	font-family: Verdana;
+	font-size: 11px;
+	background: #E4EDC2; /* old browsers */
+    background: -moz-linear-gradient(top, #E4EDC2 0px, #F5F7E7 55px, #F5F7E7 100%); /* firefox */
+    background: -webkit-linear-gradient(top, #E4EDC2 0px, #F5F7E7 55px, #F5F7E7 100px); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#E4EDC2', endColorstr = '#F5F7E7', GradientType = 0); /* ie */
+    background: -o-linear-gradient(top, #E4EDC2 0%, #F5F7E7 55%, #F5F7E7 100%); /* opera */
+}
+#rounded-corner {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	width: 980px;
+	text-align: left;
+	border-collapse: collapse;
+	margin: 20px;
+}
+
+#rounded-corner thead th.rounded-company {
+	background: #b9c9fe
+		url("http://www.smashingmagazine.com/images/express-css-table-design/table-images/left.png")
+		left -1px no-repeat;
+}
+
+#rounded-corner thead th.rounded-q4 {
+	background: #b9c9fe
+		url("http://www.smashingmagazine.com/images/express-css-table-design/table-images/right.png")
+		right -1px no-repeat;
+}
+
+#rounded-corner th {
+	font-weight: normal;
+	font-size: 13px;
+	color: #039;
+	background: #b9c9fe;
+	padding: 8px;
+}
+
+#rounded-corner td {
+	background: #e8edff;
+	border-top: 1px solid #fff;
+	color: #669;
+	padding: 8px;
+}
+
+#rounded-corner tfoot td.rounded-foot-left {
+	background: #e8edff
+		url("http://www.smashingmagazine.com/images/express-css-table-design/table-images/botleft.png")
+		left bottom no-repeat;
+}
+
+#chart_div {
+	width: 1000px;
+	height: 900px;
+}
+
+#rounded-corner tbody tr:hover td {
+	background: #d0dafd;
+}
+
+#chart_div1 {
+	height: 300px;
+}
+
+#chart_div2 {
+	height: 300px;
+}
+
+#backgroundPopup {
+	display: none;
+	position: fixed;
+	_position: absolute; /* hack for internet explorer 6*/
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: #000000;
+	border: 1px solid #cecece;
+	z-index: 1;
+}
+
+#popupContact {
+	display: none;
+	position: fixed;
+	_position: absolute; /* hack for internet explorer 6*/
+	height: 644px;
+	width: 808px;
+	background: #FFFFFF;
+	border: 2px solid #cecece;
+	z-index: 2;
+	padding: 12px;
+	font-size: 13px;
+}

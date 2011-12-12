@@ -1,0 +1,28 @@
+body {
+    background: #E4EDC2; /* old browsers */
+    background: -moz-linear-gradient(top, #E4EDC2 0px, #F5F7E7 55px, #F5F7E7 100%); /* firefox */
+    background: -webkit-linear-gradient(top, #E4EDC2 0px, #F5F7E7 55px, #F5F7E7 100px); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#E4EDC2', endColorstr = '#F5F7E7', GradientType = 0); /* ie */
+    background: -o-linear-gradient(top, #E4EDC2 0%, #F5F7E7 55%, #F5F7E7 100%); /* opera */
+    color: #fff;
+    font: 300 100.1% "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
+    height: 100%;
+}
+#holder {
+    height: 480px;
+    left: 50%;
+    margin: -240px 0 0 -320px;
+    position: absolute;
+    top: 50%;
+    width: 640px;
+}
+#copy {
+    bottom: 0;
+    font: 300 .7em "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
+    position: absolute;
+    right: 1em;
+    text-align: right;
+}
+#copy a {
+    color: #fff;
+}
