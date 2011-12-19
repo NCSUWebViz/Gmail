@@ -41,10 +41,8 @@ import javax.servlet.http.HttpSession;
  */
 public class GmailServlet extends HttpServlet {
 	Properties databaseConfig = new Properties();
-
-	private static String jdbcURL;
-	private static String user;
-	private static String password;
+	
+	private static String dbJDBC, dbUserName, dbPassword;
 
 	private static int parentMessageCounter = 0;
 	private static int childMessageCounter = 0;
@@ -123,15 +121,10 @@ public class GmailServlet extends HttpServlet {
 	//        statement.execute("COMMIT");
 	//    }
 	//    
-	public void initializeDBConnectionParameters() {
-		jdbcURL = getServletConfig().getInitParameter("JDBC_URL");
-		user = getServletConfig().getInitParameter("user");
-		password = getServletConfig().getInitParameter("password");
-	}
 
 	public static Connection connectToDatabase() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
 		return connection;
 	}
 
@@ -249,13 +242,15 @@ public class GmailServlet extends HttpServlet {
 
 	//accept get request
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession(true);
-		String userName = session.getAttribute("email_id").toString();
-		String password = session.getAttribute("password").toString();
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
+		String userName = httpsession.getValue("email_id").toString();
+		String password = httpsession.getValue("password").toString();
 		//HttpSession session = request.getSession(true);
 		PrintWriter pw = null;
 		try {
-			initializeDBConnectionParameters();
 			pw = response.getWriter();
 			accessGmail(userName, password);
 			pw.write("{\"success\": \"true\"}");

@@ -11,25 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class UserLastRepliedImportanceServlet extends HttpServlet {
-	private static String jdbcURL;
-	private static String user;
-	private static String password;
-	
-	static String param1 = null;
-	static String param2 = null;
-	
-	public void initialize() {
-		jdbcURL = getServletConfig().getInitParameter("JDBC_URL");
-		user = getServletConfig().getInitParameter("user");
-		password = getServletConfig().getInitParameter("password");
-	}
+	private static String dbUserName, dbPassword, dbJDBC, param1, param2;
 	
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) {
-		initialize();
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
+		
 		PrintWriter pw = null;
-		HttpSession session = request.getSession(true);
-		param1 = (String) session.getAttribute("email_id");
-		param2 = (String) session.getAttribute("password");
+		param1 = httpsession.getValue("email_id").toString();
+		param2 = httpsession.getValue("password").toString();
 		try {
 			pw = response.getWriter();
 			pw.write(getLastReply());
@@ -40,14 +32,13 @@ public class UserLastRepliedImportanceServlet extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 	}
 
 	public static Connection connectToDatabase() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
 		return connection;
 	}
 	

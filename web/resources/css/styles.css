@@ -546,7 +546,24 @@ p.frontpage-button a:hover {
 	color: #fff;
 }
 .hidden { display:none;  }
-
+#showmail:hover{
+	background: #E5620A none;
+	color: #fff;
+}
+#showmail{
+	padding: 17px 20px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-shadow:-1px -1px #CE5709;
+	background: #F87B27 url('images/frontpage-link.png') repeat-x scroll top left;
+	border: 1px solid #000;
+	cursor: pointer;
+	z-index: 3;
+}
 div#sub-header {
 	height: 101px;
 }
@@ -665,22 +682,23 @@ div#sub-header h2 {
 .sidebar h4 strong {
 	color: #F87B27;
 }
-
+#title {
+	color: #F87B27;
+}
 .clear {
 	clear: both;
 }
 
 #footer {
 	margin:0 auto;
-	background: #000 url('images/footer.jpg') repeat-x scroll bottom left;
-	padding: 30px 5px 0;
+	padding: 0px 5px 0;
 }
 
 .footer-content {
 	width: 960px;
 	margin: 0 auto;
 	display: block;
-	padding-bottom: 30px;
+	padding-bottom: px;
 }
 
 #footer a {
@@ -762,7 +780,7 @@ div#sub-header h2 {
 }
 
 #footer-links {
-	background-color: #000;
+	background-color: transparent;
 	color: #ccc;
 	padding: 5px;
 }
@@ -775,7 +793,7 @@ div#footer-links p {
 	display: block;
 }
 #footer-links a {
-	color: #eee;
+	color: #999;
 	font-weight: bold;
 	text-decoration: underline;
 }

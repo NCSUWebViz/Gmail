@@ -6,31 +6,22 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
-import java.util.Properties;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class GetUserDataByMonthServlet extends HttpServlet {
-	Properties databaseConfig = new Properties();
-	private static String jdbcURL;
-	private static String user;
-	private static String password;
-	
-	public void initializeDBConnectionParameters() {
-		jdbcURL = getServletConfig().getInitParameter("JDBC_URL");
-		user = getServletConfig().getInitParameter("user");
-		password = getServletConfig().getInitParameter("password");
-	}
+	private static String dbJDBC, dbUserName, dbPassword;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-		initializeDBConnectionParameters();
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
+		String finduser = httpsession.getValue("email_id").toString();
+		
 		PrintWriter pw = null;
-		HttpSession session = request.getSession(true);
-		String finduser = (String) session.getAttribute("email_id");
-
 		String year = request.getParameter("year");
 		try {
 			pw = response.getWriter();
@@ -48,7 +39,7 @@ public class GetUserDataByMonthServlet extends HttpServlet {
 	
 	public static Connection connectToDatabase() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
 		return connection;
 	}
 	//get data by months

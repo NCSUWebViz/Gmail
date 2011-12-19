@@ -14,16 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class EmailOverloadingServlet extends HttpServlet{
+	private static String dbUserName, dbPassword, dbJDBC;
 	
-	private static final String jdbcURL = "jdbc:oracle:thin:@ora.csc.ncsu.edu:1523:orcl";
-	private static final String user = "gapandit";
-	private static final String password = "001000715";
-	static String session_user = null;
-	static String session_password = null;
+	public static Connection connectToDatabase() throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
+		return connection;
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession(true);
-		session_user = (String) session.getAttribute("email_id");
-		session_password = (String) session.getAttribute("password");
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
 		
 		PrintWriter pw = null;
 		try {
@@ -40,25 +43,16 @@ public class EmailOverloadingServlet extends HttpServlet{
 		doGet(request, response);
 	}
 	
-	public static Connection connectToDatabase() throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
-		return connection;
-	}
-	
-	
-	String getOverloadedMails() throws Exception{
-		String ResultString="";
-		float minimp=0;
-		float maximp=3;
+	public String getOverloadedMails() throws Exception{
+		String ResultString = "";
+		float minimp = 0;
+		float maximp = 3;
 		java.util.Date today = new java.util.Date();
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.MONTH, -1);
-		java.util.Date monthback=calendar.getTime();	
-		System.out.println("today:"+today.toString()+"monthback:"+monthback.toString());
+		java.util.Date monthback = calendar.getTime();
 		Timestamp mintime= new java.sql.Timestamp(monthback.getTime());
 		Timestamp maxtime=new java.sql.Timestamp(today.getTime());
-		System.out.println("mintime:"+mintime.toString()+"maxtime:"+maxtime.toString());
 		Connection connection = connectToDatabase();
 		Statement statement = connection.createStatement();
 		statement.executeUpdate("alter session set NLS_TIMESTAMP_FORMAT = 'YYYY-MM-DD HH24:MI:SS.FF'");
@@ -70,7 +64,6 @@ public class EmailOverloadingServlet extends HttpServlet{
 		}
 		ResultString = ResultString.substring(0, ResultString.length() -1);
 		ResultString+="],\"success\": \"true\"}";
-		System.out.println(ResultString);
 		connection.close();
 		return ResultString;
 	}

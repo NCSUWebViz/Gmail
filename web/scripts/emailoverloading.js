@@ -69,9 +69,7 @@ function drawChart() {
 		}
 	}
 
-	R
-			.text(originX + 200, originY + 20,
-					'Your emailoverload for last one month');
+	R.text(originX + 200, originY + 20,'Your email-overload for last one month');
 	for ( var j = originY, i = 0; j >= originY - 400 && i <= 5; j = j - height, i++) {
 		R.text(originX - 35, j, importanceList[i]);
 	}
@@ -95,12 +93,17 @@ function drawChart() {
 		(function(st, state) {
 			st[0].style.cursor = "hand";
 			st[0].onmousedown = function() {
+				$('#tooltip').css({visibility:'visible'});
 				document.getElementById("tooltip").innerHTML = '<h4><i>SenderName: </i></h4>'
 						+ responseMsg.InboxOverLoading[state].Sendername
 						+ '<br><h4><i>Subject: </i></h4>'
 						+ responseMsg.InboxOverLoading[state].Subject;
-				var value = 'subject:'+responseMsg.InboxOverLoading[state].Subject
-				runSearch(value);
+				var value = 'from:'+responseMsg.InboxOverLoading[state].Sendername;
+				$('#showmail').css({visibility:'visible'});
+				$('#showmail').bind('click', function(){
+					window.open(
+						       (MAIL_HOST == "gmail.com" ? GMAIL_PREFIX : APPS_PREFIX + MAIL_HOST) + SEARCH_PREFIX + encodeURIComponent(value) + MAIL_HOST);	       
+				});
 			};
 		})(dots[state], state);
 	}

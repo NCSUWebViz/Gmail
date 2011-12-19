@@ -16,6 +16,7 @@
 	<script type="text/javascript" src="./scripts/emailoverloading.js"></script>
 </head>
 <body>
+	<h4 id="title">Email-Overload</h4>
 	<table height=100% width=100% border=1>
 		<tr>
 			<td width="70%">
@@ -25,8 +26,10 @@
 				</div>
 			</td>
 			<td width="30%">
-			<div id="tooltip">
+			<div id="tooltip" style="visibility: hidden">
 			</div>
+			<br>
+			<div><button id="showmail" style="visibility: hidden">To Mail</button></div>
 			</td>	
 		</tr>
 	</table>

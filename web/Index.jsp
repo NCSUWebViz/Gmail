@@ -29,11 +29,11 @@ License: Creative Commons Attribution
 				</a>
 			</h1>
 			<h2>Helps you analyze your inbox...</h2>
+			
 		</div>
-
 		<div id="nav">
 			<ul class="sf-menu dropdown">
-				<li><a id="analyze" href="#" onClick="">Analyze</a>
+				<li><a id="analyze" href="#" onClick="analyze()">Analyze</a>
 				</li>
 				<li><a href="Index.jsp">Home</a>
 				<li><a class="has_submenu" href="examples.html">Aggregates</a>
@@ -59,7 +59,7 @@ License: Creative Commons Attribution
 			<div id="slides">
 				<div>
 					<img src="./resources/images/gmail.PNG" style="height: 71px; width: 409px;" /> <br><br><br><br>
-									<h2>Welcome to Gmail Viz</h2>
+									<h2>Welcome to Gmail Viz, <div id="account"></div></h2>
 									<p>
 										A project for Web Viz class at NC-State University that helps
 										you analyze your inbox for fun!<br> Disclaimer: No
@@ -127,42 +127,18 @@ License: Creative Commons Attribution
 
 				</div>
 			</div>
-
-			<div class="sidebar">
-				<ul>
-					<li>
-						<h4>
-							<span>Team <strong>Members</strong>
-							</span>
-						</h4>
-						<ul>
-							<li>
-								<p style="margin: 0;">
-								<ul>
-									<li><a href="http://www4.ncsu.edu/~nrpathak">Nidhi Pathak</a></li>
-									<li><a href="http://www4.ncsu.edu/~vsingh3">Vartika Singh</a></li>
-									<li><a href="http://www4.ncsu.edu/~sgpai">Sarvesh Pai</a></li>
-									<li><a href="http://www4.ncsu.edu/~gapandit">Girish Pandit</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
 			<div class="clear"></div>
 		</div>
 	</div>
-<!-- 	<div id="footer">
+ 	<div id="footer">
 
 		<div id="footer-links">
-
-			A link to http://www.spyka.net must remain. To remove link see http://www.spyka.net/licensing
 			<p>
 				GmailViz &copy; 2011. Website powered by design provided on <a
-					href="http://www.spyka.net">spyka.net</a> |
+					href="http://www.spyka.net">spyka.net</a> 
 			</p>
 		</div>
-	</div> -->
+	</div>
 	<div id="popupContact">
 		<div id="chart_div"></div>
 	</div>

@@ -9,14 +9,16 @@ import java.sql.Statement;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class SendContactServlet extends HttpServlet {
-
-	private static final String jdbcURL = "jdbc:oracle:thin:@ora.csc.ncsu.edu:1523:orcl";
-	private static final String user = "nrpathak";
-	private static final String password = "000997846";
+	private static String dbJDBC, dbUserName, dbPassword;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
 		PrintWriter pw = null;
 		try {
 			pw = response.getWriter();
@@ -34,7 +36,7 @@ public class SendContactServlet extends HttpServlet {
 	
 	public static Connection connectToDatabase() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
 		return connection;
 	}
 	

@@ -12,27 +12,29 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 
-public class GetAgeVsCountIntervals extends HttpServlet {	
-	private static String jdbcURL;
-	private static String user;
-	private static String password;
-	
+public class GetAgeVsCountIntervals extends HttpServlet {
+	private static String dbUserName, dbPassword, dbJDBC;
 	@SuppressWarnings("unused")
 	private static final SimpleDateFormat monthDayYearformatter = new SimpleDateFormat("MMMMM dd, yyyy");
 	@SuppressWarnings("unused")
 	private static final SimpleDateFormat monthDayformatter = new SimpleDateFormat("MMMMM dd");
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
 		PrintWriter pw = null;
+		
 		String importance = request.getParameter("importance");
 		String fromTimestamp = request.getParameter("from");
 		String toTimestamp = request.getParameter("to");
-		initializeDBConnectionParameters();
 		
 		HashMap<String, String> importanceMap = new HashMap<String, String>();
 		importanceMap.put("Very Important", "10-8");
@@ -52,19 +54,13 @@ public class GetAgeVsCountIntervals extends HttpServlet {
 		}
 	}
 	
-	public void initializeDBConnectionParameters() {
-		jdbcURL = getServletConfig().getInitParameter("JDBC_URL");
-		user = getServletConfig().getInitParameter("user");
-		password = getServletConfig().getInitParameter("password");
-	}
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 	}
 	
 	public static Connection connectToDatabase() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
 		return connection;
 	}
 	

@@ -9,22 +9,25 @@ import java.sql.Statement;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class GetContactImportanceServlet extends HttpServlet {
-	private static String jdbcURL;
-	private static String user;
-	private static String password;
+	private static String dbUserName, dbPassword, dbJDBC;
 	
-	public void initializeDBConnectionParameters() {
-		jdbcURL = getServletConfig().getInitParameter("JDBC_URL");
-		user = getServletConfig().getInitParameter("user");
-		password = getServletConfig().getInitParameter("password");
+	public static Connection connectToDatabase() throws Exception {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
+		return connection;
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
+		
 		PrintWriter pw = null;
 		try {
-			initializeDBConnectionParameters();
 			pw = response.getWriter();
 			pw.write(getContacts());
 		}
@@ -36,12 +39,6 @@ public class GetContactImportanceServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
-	}
-	
-	public static Connection connectToDatabase() throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
-		return connection;
 	}
 	
 	public String getContacts() throws Exception {

@@ -26,8 +26,9 @@
 				</div>
 			</td>
 			<td width="40%">
-				<div id = "tooltip">
-				</div>
+				<div id = "tooltip" style="visibility: hidden">
+				</div><br>
+				<div><button id="showmail" style="visibility: hidden">To Mail</button></div>
 			</td>	
 		</tr>
 	</table>

@@ -107,10 +107,11 @@ function init(){
 		type : 'POST',
 		url : "/GmailViz/details",
 		success : function(msg) {
+			console.log('MSG:::::::'+msg)
 			msg = eval(' (' + msg + ') ');
-			if(msg.success == 'true') {
-				$("#emailDetails").innerHTML = 'Logged as:'+msg.email;
-			}
+				console.log('MSG:::::::'+msg.Details.email)
+				$("#account").text(msg.Details.email);
+			
 		}
 	});
 	$.ajax({

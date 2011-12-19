@@ -53,7 +53,8 @@ window.onload = function() {
 				drawChart();
 			}
 			else {
-				$("#canvas").innerHTML = "Hi";
+				$("#paper").css({color:"red"});
+				$("#paper").text('Sorry! No data available for date '+vars['from'].replace(/(\s*$)/g, "")+' and '+vars['from'].replace(/(\s*$)/g, "")+' Please choose other block(s)!!!');
 			}
 		},
 		failure : function(msg) {
@@ -113,10 +114,15 @@ function drawChart() {
     	(function (st, state) {
             st[0].style.cursor = "hand";
             st[0].onmousedown = function () {
+            	$('#tooltip').css({visibility:'visible'});
             	document.getElementById("tooltip").innerHTML = '<h4>SenderName: </h4>' + responseMsg.InboxAgeData[state].Sendername+ 
         		'<br><h4>Subject: </h4>' + responseMsg.InboxAgeData[state].Subject;
             	var value = 'subject: '+responseMsg.InboxAgeData[state].Subject;
-				runSearch(value);
+            	$('#showmail').css({visibility:'visible'});
+				$('#showmail').bind('click', function(){
+					window.open(
+						       (MAIL_HOST == "gmail.com" ? GMAIL_PREFIX : APPS_PREFIX + MAIL_HOST) + SEARCH_PREFIX + encodeURIComponent(value) + MAIL_HOST);	       
+				});
             };
         })(dots[state], state);
     }

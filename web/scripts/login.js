@@ -1,4 +1,4 @@
-	img1 = new Image(16, 16);
+img1 = new Image(16, 16);
 img1.src = "./resources/images/spinner.gif";
 
 img2 = new Image(220, 19);
@@ -31,7 +31,7 @@ $(document).ready(
 							msg = eval(' (' + msg + ') ');
 							
 							if(msg.success == 'true') {
-								window.location = location.protocol + '//' + location.host + "/GmailViz/Index.jsp";								
+								window.location = location.protocol + '//' + location.host + "/GmailViz/db.jsp";								
 							}
 							else if(msg.success == 'false') {
 								$('#ajax_loading').hide();

@@ -1,13 +1,10 @@
 html,body {
-	padding: 0;
-	border: 0px none;
-	font-family: Verdana;
-	font-size: 11px;
-	background: #E4EDC2; /* old browsers */
-    background: -moz-linear-gradient(top, #E4EDC2 0px, #F5F7E7 55px, #F5F7E7 100%); /* firefox */
-    background: -webkit-linear-gradient(top, #E4EDC2 0px, #F5F7E7 55px, #F5F7E7 100px); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#E4EDC2', endColorstr = '#F5F7E7', GradientType = 0); /* ie */
-    background: -o-linear-gradient(top, #E4EDC2 0%, #F5F7E7 55%, #F5F7E7 100%); /* opera */
+       padding: 0;
+       border: 0px none;
+       font-family: Verdana;
+       font-size: 11px;
+       background: #467612 url("../images/gmail_background.jpg") repeat-x;  
+   background-size: 100%;        
 }
 
 /* Label */
@@ -51,7 +48,7 @@ div {
 	font-size: 11px;
 }
 #login_link{
-	color: black;
+	color: white;
 	align: center;
 	left: 250px;
 }

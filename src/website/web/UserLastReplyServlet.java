@@ -14,24 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class UserLastReplyServlet extends HttpServlet {
-	private static String jdbcURL;
-	private static String user;
-	private static String password;
+	private static String dbUserName, dbPassword, dbJDBC;
 	private static final SimpleDateFormat yearformat = new SimpleDateFormat("yyyy");
 	private static final SimpleDateFormat monthformat = new SimpleDateFormat("MM");
 	private static final SimpleDateFormat dayformat = new SimpleDateFormat("dd");
-	
-	public void initialize() {
-		jdbcURL = getServletConfig().getInitParameter("JDBC_URL");
-		user = getServletConfig().getInitParameter("user");
-		password = getServletConfig().getInitParameter("password");
-	}
-	
+		
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) {
-		PrintWriter pw = null;
 		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
+		PrintWriter pw = null;
 		try {
-			initialize();
 			String userName = httpsession.getValue("email_id").toString();
 			
 			pw = response.getWriter();
@@ -48,7 +42,7 @@ public class UserLastReplyServlet extends HttpServlet {
 
 	public static Connection connectToDatabase() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user,password);
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName,dbPassword);
 		return connection;
 	}
 	

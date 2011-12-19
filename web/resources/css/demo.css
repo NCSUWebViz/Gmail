@@ -4,7 +4,7 @@ body {
     background: -webkit-linear-gradient(top, #E4EDC2 0px, #F5F7E7 55px, #F5F7E7 100px); /* webkit */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#E4EDC2', endColorstr = '#F5F7E7', GradientType = 0); /* ie */
     background: -o-linear-gradient(top, #E4EDC2 0%, #F5F7E7 55%, #F5F7E7 100%); /* opera */
-    color: #fff;
+    color: #F87B27;;
     font: 300 100.1% "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
     height: 100%;
 }

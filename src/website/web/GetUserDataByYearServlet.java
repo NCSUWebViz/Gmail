@@ -15,29 +15,25 @@ import javax.servlet.http.HttpSession;
 
 public class GetUserDataByYearServlet extends HttpServlet {
 	Properties databaseConfig = new Properties();
-	private static String jdbcURL;
-	private static String user;
-	private static String password;
-	
-	public void initializeDBConnectionParameters() {
-		jdbcURL = getServletConfig().getInitParameter("JDBC_URL");
-		user = getServletConfig().getInitParameter("user");
-		password = getServletConfig().getInitParameter("password");
-	}
+	private static String dbJDBC, dbUserName, dbPassword;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-		initializeDBConnectionParameters();
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
+		String param = httpsession.getAttribute("email_id").toString();
+		
 		PrintWriter pw = null;
 		String finduser = request.getParameter("emailid");
-		HttpSession session = request.getSession(true);
-		String param = (String) session.getAttribute("email_id");
+		
 		if(param!=null){
-			session.setAttribute("email_id", new String(finduser));
-            param = (String) session.getAttribute("email_id");
+			httpsession.setAttribute("email_id", new String(finduser));
+            param = (String) httpsession.getAttribute("email_id");
 		}
 		else {
 			param = finduser;
-            session.setAttribute("email_id", param);
+			httpsession.setAttribute("email_id", param);
         }
 		try {
 			pw = response.getWriter();
@@ -55,7 +51,7 @@ public class GetUserDataByYearServlet extends HttpServlet {
 	
 	public static Connection connectToDatabase() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
 		return connection;
 	}
 	public static String getMessageByYear(String finduser){

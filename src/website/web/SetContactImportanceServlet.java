@@ -12,15 +12,18 @@ import java.util.Set;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class SetContactImportanceServlet extends HttpServlet {
-
-	private static String jdbcURL;
-	private static String user;
-	private static String password;
+	private static String dbJDBC, dbUserName, dbPassword;
 	HashMap<String, String> contactInfo = new HashMap<String, String>();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession httpsession = request.getSession(true);
+		dbUserName = httpsession.getValue("dbUsername").toString();
+		dbPassword = httpsession.getValue("dbPassword").toString();
+		dbJDBC = httpsession.getValue("dbJDBC").toString();
+		
 		String parameter = request.getParameter("obj");
 		String[] temp = parameter.split(";");
 		for (int i = 0; i < temp.length; i++) {
@@ -39,15 +42,9 @@ public class SetContactImportanceServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void initializeDBConnectionParameters() {
-		jdbcURL = getServletConfig().getInitParameter("JDBC_URL");
-		user = getServletConfig().getInitParameter("user");
-		password = getServletConfig().getInitParameter("password");
-	}
-	
 	public static Connection connectToDatabase() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection(jdbcURL, user, password);
+		Connection connection = DriverManager.getConnection(dbJDBC, dbUserName, dbPassword);
 		return connection;
 	}
 
